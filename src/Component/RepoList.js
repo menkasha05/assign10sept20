@@ -9,11 +9,6 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { Typography, IconButton, Button } from "@material-ui/core";
 import { Alert, AlertTitle } from "@material-ui/lab";
-import {
-  FavoriteBorderIcon,
-  FavouriteIcon,
-  MenuIcon,
-} from "@material-ui/icons";
 import Snackbar from "@material-ui/core/Snackbar";
 import { withRouter, Link } from "react-router-dom";
 import {
@@ -31,18 +26,6 @@ const useStyles = makeStyles({
     margin: "auto",
   },
 });
-
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData("Mainweb repo", 159, 6.0, 24, 4.0),
-  createData("carrier repo", 237, 9.0, 37, 4.3),
-  createData("sat repo", 262, 16.0, 24, 6.0),
-  createData("Admin repo", 305, 3.7, 67, 4.3),
-  createData("userdashboard repo", 356, 16.0, 49, 3.9),
-];
 
 function RepoList(props) {
   // const [data, setData] = React.useState([]);

@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import DetailedList from "./Component/DetailedList";
 import RepoList from "./Component/RepoList";
