@@ -8,17 +8,19 @@ import { Route, Switch, Redirect } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <Switch>
-        <Route exact path="/">
-          <Redirect to="/list" />
-        </Route>
-        <Route exact path="/:page" component={Home} />
-        {/* <Route exact path="/lists" component={RepoList} />
-        <Route exact path="/details" component={DetailedList} />
-        <Route exact path="/favourites" component={FavouriteList} /> */}
-      </Switch>
-    </div>
+    <>
+      <div className="App">
+        <Switch>
+          <Route exact path="/">
+            <Redirect to="/list" />
+          </Route>
+          <Route exact path="/:page" component={Home} />
+          {/* <Route exact path="/list" component={RepoList} />
+          <Route exact path="/details" component={DetailedList} />
+          <Route exact path="/favourite" component={FavouriteList} /> */}
+        </Switch>
+      </div>
+    </>
   );
 }
 

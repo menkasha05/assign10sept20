@@ -1,5 +1,3 @@
-import React from "react";
-
 const iState = {
   product: null,
   wish: [],
@@ -19,7 +17,7 @@ const reducer = (state = iState, action) => {
         inCart: true,
       };
 
-      const p = state.product.filter((item) => item.id == action.payload.id);
+      const p = state.product.filter((item) => item.id === action.payload.id);
       const pro = state.product.filter((item) => item.id !== action.payload.id);
       console.log(p);
       p[0].inCart = true;

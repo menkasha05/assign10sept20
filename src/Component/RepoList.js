@@ -51,18 +51,25 @@ function RepoList(props) {
 
   useEffect(() => {
     props.getData();
-    console.log(view);
+    console.log("use " + view);
   }, []);
   // console.log(data[0]);
+  console.log("nor" + JSON.stringify(view));
+  // const handleDetail = (d) => {
+  //   setView((state) => !state);
+  //   console.log(view);
+  //   props.detailData(d);
+  //   setView(false);
+  //   console.log(view);
+  //   setTimeout(() => console.log(view));
 
-  const handleDetail = (d) => {
-    setView(!view);
-    props.detailData(d);
-    console.log(view);
+  //   props.history.push("/details");
+  // };
 
+  const handleNav = () => {
+    console.log(props);
     props.history.push("/details");
   };
-
   const { data, detailData } = props;
 
   return (
@@ -70,6 +77,33 @@ function RepoList(props) {
       <Typography variant="h4" gutterBottom={true}>
         My Repositories
       </Typography>
+      {fav && (
+        <Snackbar
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+          open={open}
+          autoHideDuration={3000}
+          onClose={handleClose}
+        >
+          <Alert severity="success">
+            <AlertTitle>Added to wish lists</AlertTitle>
+            For seeing all the wish list.Click — <strong>My Favourite!</strong>
+          </Alert>
+        </Snackbar>
+      )}
+      {view && (
+        <Snackbar
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+          open={open}
+          autoHideDuration={3000}
+          onClose={handleClose}
+        >
+          <Alert severity="success">
+            <AlertTitle>Go to Details Tab</AlertTitle>
+            Due to some issue in Routing tabs not navigating. Click—{" "}
+            <strong> Details!</strong>
+          </Alert>
+        </Snackbar>
+      )}
       <Table className={classes.table} aria-label="simple table">
         <TableBody>
           {data !== null &&
@@ -77,62 +111,36 @@ function RepoList(props) {
               (d) =>
                 d && (
                   <TableRow key={d.id}>
-                    {fav && (
-                      <Snackbar
-                        anchorOrigin={{ vertical: "top", horizontal: "center" }}
-                        open={open}
-                        autoHideDuration={3000}
-                        onClose={handleClose}
-                      >
-                        <Alert severity="success">
-                          <AlertTitle>Added to wish lists</AlertTitle>
-                          For seeing all the wish list.Click —{" "}
-                          <strong>My Favourite!</strong>
-                        </Alert>
-                      </Snackbar>
-                    )}
-                    {view && (
-                      <Snackbar
-                        anchorOrigin={{ vertical: "top", horizontal: "center" }}
-                        open={open}
-                        autoHideDuration={3000}
-                        onClose={handleClose}
-                      >
-                        <Alert severity="success">
-                          <AlertTitle>Go to Details Tab</AlertTitle>
-                          Due to some issue in Routing tabs not navigating.
-                          Click— <strong> Details!</strong>
-                        </Alert>
-                      </Snackbar>
-                    )}
                     <TableCell component="th" scope="row">
                       {d.title}
                     </TableCell>
                     <TableCell align="right">
                       {" "}
-                      <Button onClick={() => handleDetail(d.id)}>
-                        View more
-                      </Button>
+                      {/* <Button onClick={() => handleDetail(d.id)}> */}
+                      <Button onClick={handleNav}>View more</Button>
                     </TableCell>
                     <TableCell align="right">
-                      <IconButton
-                        edge="start"
-                        className={classes.menuButton}
-                        color="inherit"
-                        aria-label="menu"
-                      >
-                        {fav ? (
-                          <i
-                            className="fas fa-heart"
-                            onClick={() => handleFav(d.id)}
-                          ></i>
-                        ) : (
-                          <i
-                            className="far fa-heart"
-                            onClick={() => handleFav(d.id)}
-                          ></i>
-                        )}
-                      </IconButton>
+                      {fav ? (
+                        <IconButton
+                          edge="start"
+                          className={classes.menuButton}
+                          color="inherit"
+                          aria-label="menu"
+                          onClick={() => handleFav(d.id)}
+                        >
+                          <i className="fas fa-heart"></i>
+                        </IconButton>
+                      ) : (
+                        <IconButton
+                          edge="start"
+                          className={classes.menuButton}
+                          color="inherit"
+                          aria-label="menu"
+                          onClick={() => handleFav(d.id)}
+                        >
+                          <i className="far fa-heart"></i>
+                        </IconButton>
+                      )}
                     </TableCell>
                   </TableRow>
                 )

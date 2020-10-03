@@ -6,7 +6,6 @@ import Typography from "@material-ui/core/Typography";
 import DetailedList from "./DetailedList";
 import RepoList from "./RepoList";
 import FavouriteList from "./FavouriteList";
-import { Switch, Link, Route, useParams } from "react-router-dom";
 
 const StyledTabs = withStyles({
   indicator: {
@@ -52,65 +51,43 @@ export default function Home(props) {
   const { page } = props.match.params;
   const classes = useStyles();
   console.log(page);
-  console.log(useParams());
-  // const tabNameToIndex = {
-  //   0: "list",
-  //   1: "details",
-  //   2: "favourite",
-  // };
-  // const indexToTabName = {
-  //   list: 0,
-  //   details: 1,
-  //   favourite: 2,
-  // };
-  // console.log(indexToTabName[page]);
-  // const [value, setValue] = React.useState(indexToTabName[page]);
+  const tabNameToIndex = {
+    0: "list",
+    1: "details",
+    2: "favourite",
+  };
+  const indexToTabName = {
+    list: 0,
+    details: 1,
+    favourite: 2,
+  };
+  console.log(indexToTabName[page]);
+  const [value, setValue] = React.useState(indexToTabName[page]);
 
-  // const handleChange = (event, newValue) => {
-  //   setValue(newValue);
-  //   history.push(`/${tabNameToIndex[newValue]}`);
-  // };
-  console.log(props);
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+    history.push(`/${tabNameToIndex[newValue]}`);
+  };
+
   return (
     <div className={classes.root}>
       <div className={classes.tabs}>
         <StyledTabs
-          value={history.location.pathname}
-          // onChange={handleChange}
-          // aria-label="styled tabs example"
+          value={value}
+          onChange={handleChange}
+          aria-label="styled tabs example"
         >
-          <StyledTab
-            value="/list"
-            label="Repositories"
-            component={Link}
-            to="/list"
-          />
+          <StyledTab label="Repositories" />
 
-          <StyledTab
-            value="/details"
-            label="Details"
-            component={Link}
-            to="/details"
-          />
-          <StyledTab
-            value="/favourite"
-            label="My Favourite"
-            component={Link}
-            to="/favourite"
-          />
+          <StyledTab label="Details" />
+          <StyledTab label="My Favourite" />
         </StyledTabs>
 
         <Typography className={classes.padding} />
       </div>
-
-      <Switch>
-        <Route path="/list" component={RepoList} />
-        <Route path="/details" component={DetailedList} />
-        <Route path="/favourite" component={FavouriteList} />
-      </Switch>
-      {/* {value === 0 && <RepoList />}
+      {value === 0 && <RepoList />}
       {value === 1 && <DetailedList />}
-      {value === 2 && <FavouriteList />} */}
+      {value === 2 && <FavouriteList />}
     </div>
   );
 }
