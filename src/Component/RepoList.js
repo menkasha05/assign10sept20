@@ -45,7 +45,7 @@ function RepoList(props) {
 
   const handleFav = (data) => {
     console.log(data);
-    setFav(!fav);
+    setFav((fav) => !fav);
     props.addFav(data);
   };
 
@@ -53,18 +53,6 @@ function RepoList(props) {
     props.getData();
     console.log("use " + view);
   }, []);
-  // console.log(data[0]);
-  console.log("nor" + JSON.stringify(view));
-  // const handleDetail = (d) => {
-  //   setView((state) => !state);
-  //   console.log(view);
-  //   props.detailData(d);
-  //   setView(false);
-  //   console.log(view);
-  //   setTimeout(() => console.log(view));
-
-  //   props.history.push("/details");
-  // };
 
   const handleNav = () => {
     console.log(props);
