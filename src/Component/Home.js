@@ -7,6 +7,10 @@ import DetailedList from "./DetailedList";
 import RepoList from "./RepoList";
 import FavouriteList from "./FavouriteList";
 import { Switch, Link, Route, useParams } from "react-router-dom";
+import RenderMain from "./Renderprops/RenderMain";
+import Hcomp from "./Renderprops/HOC/Hcomp";
+import CompModalReuse from "./CompModalReuse";
+import ModalInModal from "./ModalInModal/ModalInModal";
 
 const StyledTabs = withStyles({
   indicator: {
@@ -51,8 +55,7 @@ export default function Home(props) {
   const { history } = props;
   const { page } = props.match.params;
   const classes = useStyles();
-  console.log(page);
-  console.log(useParams());
+
   // const tabNameToIndex = {
   //   0: "list",
   //   1: "details",
@@ -70,7 +73,7 @@ export default function Home(props) {
   //   setValue(newValue);
   //   history.push(`/${tabNameToIndex[newValue]}`);
   // };
-  console.log(props);
+
   return (
     <div className={classes.root}>
       <div className={classes.tabs}>
@@ -108,6 +111,11 @@ export default function Home(props) {
         <Route path="/details" component={DetailedList} />
         <Route path="/favourite" component={FavouriteList} />
       </Switch>
+
+      <Route exact path="/render" component={RenderMain} />
+      <Route exact path="/modal-reuse" component={CompModalReuse} />
+      <Route exact path="/hoc" component={Hcomp} />
+      <Route exact path="/ModalInModal" component={ModalInModal} />
       {/* {value === 0 && <RepoList />}
       {value === 1 && <DetailedList />}
       {value === 2 && <FavouriteList />} */}
